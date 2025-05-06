@@ -6,7 +6,6 @@ conta2 = 0
 saldo2 = 0
 
 while True:
-    
     print('\n\n\n\nBem-Vindo ao seu Banco!\n\n1: Consultar Saldo\n2: Abrir Nova Conta\n3: Fazer Depósito\n4: Sacar Dinheiro\n5: Transferência\n6: Sair')
 
     op_menu = int(input('Escolha uma Opção: '))
@@ -52,12 +51,12 @@ while True:
         print('Okay! Vamos prosseguir com a transferência!')
         num_conta_origem = int(input('Informe o número da conta de origem: '))
         num_conta_destino = int(input('Informe agora o número da conta de destino:'))
-        if num_conta_origem == conta1 & num_conta_destino == conta2:
+        if num_conta_origem == conta1 and num_conta_destino == conta2:
             saldo_transf = int(input(f'Bacana. Agora, informe o valor a ser transferido entre as contas {num_conta_origem} e {num_conta_destino}: R$'))
             saldo1 -= saldo_transf
             saldo2 += saldo_transf
             print(f'Tudo certo! O dinheiro foi transferido com sucesso. O novo saldo da conta {conta1} é: R$', saldo1)
-        elif num_conta_origem == conta2 & num_conta_destino == conta1:
+        elif num_conta_origem == conta2 and num_conta_destino == conta1:
             saldo_transf = int(input(f'Bacana. Agora, informe o valor a ser transferido entre as contas {num_conta_origem} e {num_conta_destino}: R$'))
             saldo2 -= saldo_transf
             saldo1 += saldo_transf
@@ -66,5 +65,4 @@ while True:
             print('Essa operação não é permitida!')
     elif op_menu == 6:
         print('Obrigado por escolher nosso banco, até logo!')
-    else:
-        print('Essa opção não está disponível!')
+        break
