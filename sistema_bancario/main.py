@@ -11,11 +11,16 @@ def login():
 
     conta = contas.get(num_conta)
     if conta and conta.senha == senha:
-        print('Seja bem-vindo (a), {conta.num_conta}!')
-
+        print(f'Seja bem-vindo (a), {conta.num_conta}!')
+        return conta
+    else:
+        print('Conta e/ou senha inválida:')
+        login()
 
 def exibir_menu():
     print('\n\n\n\nBem-Vindo ao seu Banco!\n\n1: Consultar Saldo\n2: Fazer Depósito\n3: Sacar Dinheiro\n4: Transferência\n5: Sair')
+
+conta_logada = login()
 
 while True:
     exibir_menu()
@@ -23,16 +28,20 @@ while True:
     op_menu = int(input('Escolha uma Opção: '))
 
     if op_menu==1:
-        conta1.consultar_saldo()
+        conta_logada.consultar_saldo()
     elif op_menu==2:
         valor = float(input('Informe o valor a ser depositado: '))
-        conta1.deposito(valor)
+        conta_logada.deposito(valor)
     elif op_menu==3:
         valor = float(input('Informe o valor para saque: '))
-        conta1.saque(valor)
+        conta_logada.saque(valor)
     elif op_menu==4:
         valor = float(input('Informe o valor a ser transferido: '))
-        conta1.transferencia(conta2, valor)
+        num_conta_destino = input('Digite a conta do destinatário: ')
+        if num_conta_destino in contas and num_conta_destino != conta_logada.num_conta:
+            conta_logada.transferencia(contas[num_conta_destino], valor)
+        else:
+            print('Conta destino não encontrada')
     elif op_menu==5:
         print('Obrigado por escolher nosso banco, até logo!')
         break
